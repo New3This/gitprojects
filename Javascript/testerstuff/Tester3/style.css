@@ -1,0 +1,13 @@
+#boxOne {
+    height:100px;
+    width:100px;
+    position:relative;
+    background: green;
+}
+
+#boxTwo {
+    height:100px;
+    width:100px;
+    position:relative;
+    background: red;
+}

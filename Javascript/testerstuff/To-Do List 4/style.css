@@ -1,0 +1,3 @@
+.ticked:checked + .inputfield {
+    text-decoration: line-through;
+}

@@ -1,0 +1,42 @@
+* {
+    font-family:'Courier New', Courier, monospace;
+    background-color: black;
+    
+}
+
+#timer {
+    font-size:5rem;
+    margin-bottom: 1px;
+    color:rgb(235, 165, 14);
+    margin-top:1rem;
+    background: rgb(156, 88, 88);
+
+
+}
+
+button {
+    font-size: 2.16rem;
+    cursor: pointer;    
+    margin-bottom:1rem;
+    border-radius: 4rem;
+    border:0.3rem rgb(41, 150, 108) solid;
+    background-color: rgb(92, 209, 141);
+}
+
+#buttons {
+    background: rgb(156, 88, 88);
+}
+
+#all {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(156, 88, 88);
+    width:35rem;
+    border-radius:3rem;
+    border:11px solid rgb(61, 47, 47);
+    margin:auto;
+    
+}
+
+

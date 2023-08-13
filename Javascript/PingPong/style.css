@@ -1,0 +1,15 @@
+#canva {
+    border:1px solid;
+}
+
+#score {
+    font-size:10rem;
+}
+
+#pong {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    flex-direction: column;
+}
