@@ -70,16 +70,27 @@ header {
 }
 
 .weather-container-item {
-    background-color: rgb(177, 106, 106);
+    background:linear-gradient(rgba(202, 138, 138, 0.5), rgba(145, 92, 92, 0.5), rgba(168, 108, 108, 0.5));
     border-radius: 2rem;
+    cursor:pointer;
 }
 
 .weather-container-item:hover {
-    border: 1px solid green;
-
+    border: 5px solid;
+    animation: border-changer 3s infinite;
 }
 
-
+@keyframes border-changer {
+    0% {
+        border-color: #ec7575;
+    }
+    50% {
+        border-color: #c47bae;
+    }
+    100% {
+        border-color: #d1778d;
+    }
+}
 
 img {
     width:15rem;
@@ -116,8 +127,8 @@ section, header {
 #style-weather {
     display:flex;
     flex-direction: column;
-    border-radius:3rem;
-    background: linear-gradient(rgb(185, 96, 96), rgb(187, 100, 100), rgb(147, 100, 100));
+    border-radius:1rem;
+    background: linear-gradient(rgba(211, 145, 145, 0.5),rgba(212, 150, 150, 0.5), rgba(170, 132, 132, 0.5));
     height:28rem;
     width:80%;
 

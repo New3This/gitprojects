@@ -3,6 +3,8 @@ let secondDay = document.getElementById("second-day");
 let thirdDay = document.getElementById("third-day");
 
 let secondThird = document.querySelectorAll(".all-three-temperatures");
+let weatherItem = document.querySelectorAll(".weather-container-item");
+
 let weatherDay = document.querySelectorAll(".weather-day");
 
 
@@ -23,7 +25,9 @@ const options = {
 	}
 };
 
+let apiData;
 getWeather(url, options);
+
 
 async function getWeather(url, options) {
     try {
@@ -31,6 +35,7 @@ async function getWeather(url, options) {
         const result = await response.json();
         console.log(result);
         retrieveWeather(result);
+        apiData = result.forecast.forecastday[0].day.avgtemp_f;
         return result;
     } catch (error) {
         console.error(error);
@@ -49,6 +54,13 @@ function retrieveWeather(result) {
 
     console.log(daysOfWeek[s]);
 }
+
+weatherItem.forEach(item => item.addEventListener("click", () => {
+    secondThird.forEach(
+        section => section.textContent = apiData.toString() + "°F"
+    );
+}
+));
 
 function checkWeather(code, element) {
     let workingCode = parseInt(code);
