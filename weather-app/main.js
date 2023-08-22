@@ -7,6 +7,7 @@ let weatherItem = document.querySelectorAll(".weather-container-item");
 
 let weatherDay = document.querySelectorAll(".weather-day");
 
+let result;
 
 const sun = [1000];
 const suncloud = [1003, 1006, 1009];
@@ -25,17 +26,15 @@ const options = {
 	}
 };
 
-let apiData;
 getWeather(url, options);
 
 
 async function getWeather(url, options) {
     try {
         const response = await fetch(url, options);
-        const result = await response.json();
+        result = await response.json();
         console.log(result);
         retrieveWeather(result);
-        apiData = result.forecast.forecastday[0].day.avgtemp_f;
         return result;
     } catch (error) {
         console.error(error);
@@ -47,7 +46,7 @@ function retrieveWeather(result) {
     checkWeather(result.forecast.forecastday[1].day.condition.code, secondDay);
     checkWeather(result.forecast.forecastday[2].day.condition.code, thirdDay);
     for (var i = 0; i < secondThird.length; i++) {
-        secondThird[i].textContent = Math.round(parseInt(result.forecast.forecastday[i].day.avgtemp_c))+"°C";
+        secondThird[i].textContent = parseInt(result.forecast.forecastday[i].day.avgtemp_c)+"°C";
         weatherDay[i].textContent = daysOfWeek[new Date((result.forecast.forecastday[i].date).toString()).getDay()];
     }
     let s = new Date((result.forecast.forecastday[0].date).toString()).getDay();
@@ -55,15 +54,23 @@ function retrieveWeather(result) {
     console.log(daysOfWeek[s]);
 }
 
+let count = 0;
 weatherItem.forEach(item => item.addEventListener("click", () => {
-    secondThird.forEach(
-        section => section.textContent = apiData.toString() + "°F"
-    );
+    if (count % 2) {
+        for (let i = 0; i < secondThird.length; i++) {
+            secondThird[i].textContent = parseInt(result.forecast.forecastday[i].day.avgtemp_c)+"°C";
+        }
+    }
+    else {
+        for (let i = 0; i < secondThird.length; i++) {
+            secondThird[i].textContent = parseInt(result.forecast.forecastday[i].day.avgtemp_f)+"°F";
+        }
+    }
+    count++;
 }
 ));
 
 function checkWeather(code, element) {
-    let workingCode = parseInt(code);
     if (sun.includes(code)) {
         element.src = "./imgs/sun.svg";
     }
