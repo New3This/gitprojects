@@ -58,12 +58,12 @@ let count = 0;
 weatherItem.forEach(item => item.addEventListener("click", () => {
     if (count % 2) {
         for (let i = 0; i < secondThird.length; i++) {
-            secondThird[i].textContent = parseInt(result.forecast.forecastday[i].day.avgtemp_c)+"°C";
+            secondThird[i].textContent = result.forecast.forecastday[i].day.avgtemp_c+"°C";
         }
     }
     else {
         for (let i = 0; i < secondThird.length; i++) {
-            secondThird[i].textContent = parseInt(result.forecast.forecastday[i].day.avgtemp_f)+"°F";
+            secondThird[i].textContent = result.forecast.forecastday[i].day.avgtemp_f+"°F";
         }
     }
     count++;
