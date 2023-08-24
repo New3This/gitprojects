@@ -10,9 +10,6 @@
 body {
     background-image: linear-gradient(to right, rgb(197, 91, 91),rgb(177, 132, 48),rgb(155, 155, 68));
 }
-*:hover {
-    border:1px solid red;
-}
 
 #search-title {
     font-size: 4rem;
@@ -110,10 +107,9 @@ section, header {
     margin-bottom:1rem;
 }
 
-#intervals-container { 
+.intervals-container { 
     display:grid;
-    grid-template-columns: repeat(6, 15%);
-    grid-template-rows: repeat(1, 90%);
+    grid-template-columns: repeat(6, 16.67%);
     justify-content: center;
     align-items: center;
     text-align:center;
@@ -121,6 +117,8 @@ section, header {
 
 .intervals-item {
     border:1px solid;
+    font-size:1.5rem;
+    background-color: #c47bae;
 }
 
 
@@ -137,4 +135,27 @@ section, header {
 #weather-section {
     display:flex;
     justify-content: center;
+}
+
+
+.intervals-item-dynamic > img {
+    width:5rem;
+    height:5rem;
+} 
+
+.intervals-item-dynamic  {
+    font-size: 2rem;
+    display:flex;
+    height:5rem;
+    border:1px solid;
+    justify-content: center;
+    align-items:center;
+}
+
+.item-odd {
+    background-color: rgb(82, 185, 185);
+}
+
+.item-even {
+    background-color: aqua;
 }

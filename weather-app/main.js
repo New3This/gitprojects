@@ -35,6 +35,7 @@ async function getWeather(url, options) {
         result = await response.json();
         console.log(result);
         retrieveWeather(result);
+        createTable(result);
         return result;
     } catch (error) {
         console.error(error);
@@ -51,7 +52,6 @@ function retrieveWeather(result) {
     }
     let s = new Date((result.forecast.forecastday[0].date).toString()).getDay();
 
-    console.log(daysOfWeek[s]);
 }
 
 let count = 0;
@@ -71,24 +71,95 @@ weatherItem.forEach(item => item.addEventListener("click", () => {
 ));
 
 function checkWeather(code, element) {
+    
     if (sun.includes(code)) {
         element.src = "./imgs/sun.svg";
     }
-    if (suncloud.includes(code)) {
+    else if (suncloud.includes(code)) {
         element.src = "./imgs/suncloud.svg";
     }
-    if (cloudthunderrain.includes(code)) {
+    else if (cloudthunderrain.includes(code)) {
         element.src = "./imgs/thunderclouds.svg";
     }
-    if (rainy.includes(code)) {
+    else if (rainy.includes(code)) {
         element.src = "./imgs/cloudrain.svg"
 
     }
-    if (snow.includes(code)) {
-        secondDay.src = "./imgs/snow.svg";
+    else if (snow.includes(code)) {
+        element.src = "./imgs/snow.svg";
     }
+
+    else {
+        console.log("No images matched");
+    }
+
 }
 
-function celsisus(code, element) {
+let intervalsContainer;
+let div;
 
+function createTable(result) {
+    let p = 0;
+    intervalItem = document.querySelectorAll(".intervals-item");
+    intervalItem[0].textContent = daysOfWeek[new Date((result.forecast.forecastday[0].date).toString()).getDay()].toUpperCase();
+    let image;
+    let count = 0;
+    for ( let j = 0; j < result.forecast.forecastday[0].hour.length; j++) {
+        for (let k = 0; k < 6; k++) {
+            intervalsContainer = document.querySelector(".intervals-container");
+            div = document.createElement("div");
+            p +=1;
+            if (j % 2) {
+                div.classList.add("intervals-item-dynamic", "item-even");
+            }
+
+            else {
+                div.classList.add("intervals-item-dynamic", "item-odd");
+
+            }
+            switch (k) {
+                case 0:
+                    div.textContent =  result.forecast.forecastday[0].hour[j].time.toString().split(" ")[1];
+                    break;
+                case 1:
+                    div.textContent = result.forecast.forecastday[0].hour[j].temp_c.toString()+"°C";
+                    break;
+                case 2:
+                    div.textContent = result.forecast.forecastday[0].hour[j].feelslike_c;
+                    break;
+                case 3:
+                    div.textContent = result.forecast.forecastday[0].hour[j].chance_of_rain;
+                    break;
+                case 4:
+                    div.textContent = result.forecast.forecastday[0].hour[j].humidity;
+                    break;
+                case 5:
+                    image = document.createElement("img");
+                    checkWeather(parseInt(result.forecast.forecastday[0].hour[j].condition.code.toString()), image);
+                    count++;
+                    break;
+                default:
+                    break;
+            }
+
+            intervalsContainer.appendChild(div);
+            if (count === 1) {
+                div.appendChild(image);
+                count-=1;
+            }
+        }
+    }
+    
 }
+// let str = "";
+
+// let intervalsContainer = document.querySelector(".intervals-container");
+// console.log(result);
+// for (let i = 0; i < result.c; i++) {
+//     let div = document.createElement("div");
+//     str +="S";
+//     div.classList.add("intervals-item");
+//     div.textContent = str;
+
+//     intervalsContainer.appendChild(div);
+// }
