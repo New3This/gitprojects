@@ -23,16 +23,18 @@ body {
 #search-icon {
     width:3.5rem;
     height:2rem;
-    background:none;
 }
 
+#button {
+    background: none;
+    border:none;
+}
 #search-bar {
-    width:50%;
     height:3.5rem;
+    width:20rem;
     border:1px solid;
     border-radius: 1.2rem;
     display:flex;
-    flex-direction: row;
     align-items: center;
     border-width: 2px;
     background-color: rgb(187, 148, 148);
@@ -107,7 +109,7 @@ section, header {
     margin-bottom:1rem;
 }
 
-.intervals-container { 
+#intervals-container { 
     display:grid;
     grid-template-columns: repeat(6, 16.67%);
     justify-content: center;
